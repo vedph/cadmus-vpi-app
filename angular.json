@@ -29,8 +29,13 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": ["src/styles.scss"],
+            "polyfills": ["@angular/localize/init"],
+            "allowedCommonJsDependencies": [
+              "dagre",
+              "webcola",
+              "ngraph.graph",
+              "ngraph.forcelayout"
             ]
           },
           "configurations": {
@@ -38,8 +43,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "3MB",
+                  "maximumError": "4MB"
                 },
                 {
                   "type": "anyComponentStyle",

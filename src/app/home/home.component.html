@@ -1,0 +1,14 @@
+<div id="container">
+  <h1>Cadmus VPI</h1>
+
+  <div id="banner">
+    <img src="./img/cadmus-300.png" alt="Cadmus VPI" class="main-logo" />
+  </div>
+
+  <div id="content">
+    <p>Welcome to the Cadmus VPI editor.</p>
+    @if (!logged()) {
+      <p>Please <a routerLink="/login">login</a> to start.</p>
+    }
+  </div>
+</div>
