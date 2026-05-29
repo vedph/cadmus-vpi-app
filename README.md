@@ -17,6 +17,8 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## History
 
+- 2026-05-29: updated Angular and packages.
+
 ### 0.0.1
 
 - 2026-04-22: Docker image.
