@@ -1,4 +1,11 @@
-import { Component, OnInit, Inject, OnDestroy, computed } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  OnDestroy,
+  computed,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Thesaurus, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { Router, RouterModule } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -18,10 +25,7 @@ import { AuthJwtService, GravatarPipe, User } from '@myrmidon/auth-jwt-login';
 import { ThemeToggleComponent } from '@myrmidon/ngx-mat-tools';
 
 // bricks
-import {
-  LOOKUP_CONFIGS_KEY,
-  RefLookupConfig,
-} from '@myrmidon/cadmus-refs-lookup';
+import { LOOKUP_CONFIGS_KEY, RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
 import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
 import { ZoteroRefLookupService } from '@myrmidon/cadmus-refs-zotero-lookup';
 
@@ -42,6 +46,7 @@ import { AppRepository } from '@myrmidon/cadmus-state';
     ThemeToggleComponent,
   ],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss',
 })
 export class App implements OnInit, OnDestroy {
@@ -94,8 +99,7 @@ export class App implements OnInit, OnDestroy {
         description: 'Zotero bibliography',
         label: 'ID',
         service: zotero,
-        itemIdGetter: (item: any) =>
-          item ? `${item.library?.id}/${item.key}` : '',
+        itemIdGetter: (item: any) => (item ? `${item.library?.id}/${item.key}` : ''),
         itemLabelGetter: (item: any) => {
           if (!item) {
             return '';
@@ -158,11 +162,9 @@ export class App implements OnInit, OnDestroy {
 
     // when the thesaurus is loaded, get the item browsers
     this._subs.push(
-      this._appRepository.itemBrowserThesaurus$.subscribe(
-        (thesaurus: Thesaurus | undefined) => {
-          this.itemBrowsers = thesaurus ? thesaurus.entries : undefined;
-        },
-      ),
+      this._appRepository.itemBrowserThesaurus$.subscribe((thesaurus: Thesaurus | undefined) => {
+        this.itemBrowsers = thesaurus ? thesaurus.entries : undefined;
+      }),
     );
   }
 

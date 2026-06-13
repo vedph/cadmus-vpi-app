@@ -3,15 +3,19 @@ import {
   importProvidersFrom,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideHttpClient, withInterceptors, withJsonpSupport } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptors,
+  withJsonpSupport,
+  withXhr,
+} from '@angular/common/http';
 import { provideRouter, withViewTransitions } from '@angular/router';
 
 // material
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 // vendors
-import { NgeMonacoModule } from '@cisstech/nge/monaco';
-import { NgeMarkdownModule } from '@cisstech/nge/markdown';
+import { DefaultMonacoLoader, NGX_MONACO_LOADER_PROVIDER } from '@jean-merelis/ngx-monaco-editor';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
@@ -40,10 +44,12 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
     provideNativeDateAdapter(),
-    provideHttpClient(withInterceptors([jwtInterceptor]), withJsonpSupport()),
+    provideHttpClient(withXhr(), withInterceptors([jwtInterceptor]), withJsonpSupport()),
     // vendor
-    importProvidersFrom(NgeMonacoModule.forRoot({})),
-    importProvidersFrom(NgeMarkdownModule),
+    {
+      provide: NGX_MONACO_LOADER_PROVIDER,
+      useFactory: () => new DefaultMonacoLoader({ paths: { vs: '/vs' } }),
+    },
     importProvidersFrom(
       NgxEchartsModule.forRoot({
         echarts: () => import('echarts'),
