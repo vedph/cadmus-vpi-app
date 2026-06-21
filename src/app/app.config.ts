@@ -7,6 +7,7 @@ import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withInterceptors,
+  withInterceptorsFromDi,
   withJsonpSupport,
   withXhr,
 } from '@angular/common/http';
@@ -46,7 +47,12 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
     provideNativeDateAdapter(),
-    provideHttpClient(withXhr(), withInterceptors([jwtInterceptor]), withJsonpSupport()),
+    provideHttpClient(
+      withXhr(),
+      withInterceptors([jwtInterceptor]),
+      withInterceptorsFromDi(),
+      withJsonpSupport(),
+    ),
     // vendor
     {
       provide: NGX_MONACO_LOADER_PROVIDER,
