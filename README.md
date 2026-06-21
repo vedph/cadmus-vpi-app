@@ -13,11 +13,15 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 🐋 Quick Docker image build:
 
 1. update version in `env.js` and `ng build --configuration=production`
-2. `docker build . -t vedph2020/cadmus-vpi-app:0.0.1 -t vedph2020/cadmus-vpi-app:latest` (replace with the current version).
+2. `docker build . -t vedph2020/cadmus-vpi-app:0.0.2 -t vedph2020/cadmus-vpi-app:latest` (replace with the current version).
 
 ## History
 
-- 2026-06-21: updated packages.
+### 0.0.2
+
+- 2026-06-21:
+  - updated packages.
+  - 🆕 added ICONCLASS lookup.
 - 2026-06-13: ⚠️ migrated to Angular 22 and new [Monaco wrapper](https://vedph.github.io/cadmus-doc/history/20260613-monaco.html).
 - 2026-05-29: updated Angular and packages.
 
