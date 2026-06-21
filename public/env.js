@@ -13,4 +13,6 @@
   window.__env.zoteroLibraryId = "TODO:YOUR_ZOTERO_LIBRARY_ID";
   // UI branding: staging, dev, production (default)
   window.__env.branding = "production";
+  // proxy
+  window.__env.proxyUrl = "http://localhost:5064/api/proxy";
 })(this);

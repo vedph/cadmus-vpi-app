@@ -69,6 +69,7 @@
     "@myrmidon/cadmus-refs-doc-references": "^11.0.0",
     "@myrmidon/cadmus-refs-external-ids": "^11.0.0",
     "@myrmidon/cadmus-refs-historical-date": "^10.0.0",
+    "@myrmidon/cadmus-refs-iconclass-lookup": "^0.0.1",
     "@myrmidon/cadmus-refs-lookup": "^11.0.0",
     "@myrmidon/cadmus-refs-mufi-lookup": "^3.0.0",
     "@myrmidon/cadmus-refs-proper-name": "^11.0.0",

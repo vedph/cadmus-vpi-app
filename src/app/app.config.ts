@@ -4,6 +4,7 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core';
 import {
+  HTTP_INTERCEPTORS,
   provideHttpClient,
   withInterceptors,
   withJsonpSupport,
@@ -26,6 +27,7 @@ import {
   CADMUS_TEXT_ED_BINDINGS_TOKEN,
   CADMUS_TEXT_ED_SERVICE_OPTIONS_TOKEN,
 } from '@myrmidon/cadmus-text-ed';
+import { PROXY_INTERCEPTOR_OPTIONS, ProxyInterceptor } from '@myrmidon/cadmus-refs-lookup';
 
 // locals
 import { routes } from './app.routes';
@@ -55,6 +57,19 @@ export const appConfig: ApplicationConfig = {
         echarts: () => import('echarts'),
       }),
     ),
+    // proxy interceptor
+    { provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true },
+    {
+      provide: PROXY_INTERCEPTOR_OPTIONS,
+      useValue: {
+        proxyUrl: (window as any).__env?.proxyUrl || 'http://localhost:5064/api/proxy',
+        urls: [
+          'http://lookup.dbpedia.org/api/search',
+          'http://lookup.dbpedia.org/api/prefix',
+          'https://iconclass.org',
+        ],
+      },
+    },
     // parts and fragments type IDs to editor group keys mappings
     // https://github.com/nrwl/nx/issues/208#issuecomment-384102058
     // inject like: @Inject('partEditorKeys') partEditorKeys: PartEditorKeys

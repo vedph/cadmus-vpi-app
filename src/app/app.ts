@@ -28,6 +28,7 @@ import { ThemeToggleComponent } from '@myrmidon/ngx-mat-tools';
 import { LOOKUP_CONFIGS_KEY, RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
 import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
 import { ZoteroRefLookupService } from '@myrmidon/cadmus-refs-zotero-lookup';
+import { IconclassRefLookupService } from '@myrmidon/cadmus-refs-iconclass-lookup';
 
 // cadmus
 import { AppRepository } from '@myrmidon/cadmus-state';
@@ -87,6 +88,7 @@ export class App implements OnInit, OnDestroy {
     storage: RamStorageService,
     viaf: ViafRefLookupService,
     zotero: ZoteroRefLookupService,
+    iconclass: IconclassRefLookupService,
   ) {
     this.version = this._env.get('version') || '';
 
@@ -138,6 +140,16 @@ export class App implements OnInit, OnDestroy {
         service: viaf,
         itemIdGetter: (item: any) => item?.viafid,
         itemLabelGetter: (item: any) => item?.term,
+      },
+      // ICONCLASS
+      {
+        name: 'Iconclass',
+        iconUrl: '/img/iconclass128.png',
+        description: 'Iconclass classification system',
+        label: 'ID',
+        service: iconclass,
+        itemIdGetter: (item: any) => item?.n,
+        itemLabelGetter: (item: any) => item?.txt?.en,
       },
     ] as RefLookupConfig[]);
   }

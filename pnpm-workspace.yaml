@@ -34,3 +34,4 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-philology-ui@19.0.1'
   - '@rollup/rollup-win32-arm64-msvc@4.62.0'
   - '@myrmidon/cadmus-codicology-ui@14.0.0'
+  - '@myrmidon/cadmus-refs-iconclass-lookup@0.0.1'
