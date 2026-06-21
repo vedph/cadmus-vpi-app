@@ -17,6 +17,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## History
 
+- 2026-06-21: updated packages.
 - 2026-06-13: ⚠️ migrated to Angular 22 and new [Monaco wrapper](https://vedph.github.io/cadmus-doc/history/20260613-monaco.html).
 - 2026-05-29: updated Angular and packages.
 
