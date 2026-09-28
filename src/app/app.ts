@@ -5,7 +5,10 @@ import {
   OnDestroy,
   computed,
   ChangeDetectionStrategy,
+  inject,
+  signal,
 } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Thesaurus, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { Router, RouterModule } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -52,10 +55,12 @@ import { AppRepository } from '@myrmidon/cadmus-state';
 })
 export class App implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];
+  private readonly _bo = inject(BreakpointObserver);
+  public readonly isMobile = signal<boolean>(false);
+  public readonly logged = signal<boolean>(false);
 
-  public user?: User;
-  public logged?: boolean;
-  public itemBrowsers?: ThesaurusEntry[];
+  public readonly user = signal<User | undefined>(undefined);
+  public readonly itemBrowsers = signal<ThesaurusEntry[] | undefined>(undefined);
   public version: string;
 
   readonly branding = computed(() => {
@@ -91,6 +96,9 @@ export class App implements OnInit, OnDestroy {
     iconclass: IconclassRefLookupService,
   ) {
     this.version = this._env.get('version') || '';
+    this._bo
+      .observe([Breakpoints.Small, Breakpoints.XSmall])
+      .subscribe((res) => this.isMobile.set(res.matches));
 
     // configure external lookup for asserted composite IDs
     storage.store(LOOKUP_CONFIGS_KEY, [
@@ -155,14 +163,14 @@ export class App implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.user = this._authService.currentUserValue || undefined;
-    this.logged = this.user !== null;
+    this.user.set(this._authService.currentUserValue || undefined);
+    this.logged.set(this.user() !== null);
 
     // when the user logs in or out, reload the app data
     this._subs.push(
       this._authService.currentUser$.subscribe((user: User | null) => {
-        this.logged = this._authService.isAuthenticated(true);
-        this.user = user || undefined;
+        this.logged.set(this._authService.isAuthenticated(true));
+        this.user.set(user || undefined);
         if (user) {
           console.log('User logged in: ', user);
           this._appRepository.load();
@@ -175,7 +183,7 @@ export class App implements OnInit, OnDestroy {
     // when the thesaurus is loaded, get the item browsers
     this._subs.push(
       this._appRepository.itemBrowserThesaurus$.subscribe((thesaurus: Thesaurus | undefined) => {
-        this.itemBrowsers = thesaurus ? thesaurus.entries : undefined;
+        this.itemBrowsers.set(thesaurus ? thesaurus.entries : undefined);
       }),
     );
   }
@@ -189,7 +197,7 @@ export class App implements OnInit, OnDestroy {
   }
 
   public logout(): void {
-    if (!this.logged) {
+    if (!this.logged()) {
       return;
     }
     this._authService
