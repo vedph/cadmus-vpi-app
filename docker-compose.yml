@@ -30,7 +30,7 @@ services:
     image: vedph2020/cadmus-vpi-api:0.0.3
     container_name: cadmus-vpi-api
     ports:
-      - 5172:8080
+      - 5064:8080
     depends_on:
       - cadmus-vpi-mongo
       - cadmus-vpi-pgsql
