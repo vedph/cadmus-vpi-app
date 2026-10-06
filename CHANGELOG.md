@@ -1,5 +1,7 @@
 # History
 
+- 2026-10-06: ⚠️ updated Angular and packages (using signal forms).
+
 ## 0.0.3
 
 - 2026-09-28: updated packages.
