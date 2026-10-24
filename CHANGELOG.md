@@ -1,5 +1,8 @@
 # History
 
+- 2026-10-24:
+  - updated Angular and packages.
+  - fixes to reset password page.
 - 2026-10-06: ⚠️ updated Angular and packages (using signal forms).
 
 ## 0.0.3
