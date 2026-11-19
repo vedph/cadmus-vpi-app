@@ -1,5 +1,8 @@
 # History
 
+## 0.0.4
+
+- 2026-11-19: updated Angular and packages.
 - 2026-10-24:
   - updated Angular and packages.
   - fixes to reset password page.

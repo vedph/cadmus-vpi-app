@@ -32,7 +32,9 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-ndpbooks-fonts@1.0.0 || 2.0.0'
   - '@myrmidon/cadmus-part-ndpbooks-pg@1.0.0 || 2.0.0'
   - '@myrmidon/cadmus-part-philology-ui@19.0.1'
-  - '@rollup/rollup-win32-arm64-msvc@4.62.0 || 4.63.5'
+  - '@rollup/rollup-win32-arm64-msvc@4.62.0 || 4.63.5 || 4.68.7'
   - '@myrmidon/cadmus-codicology-ui@14.0.0'
   - '@myrmidon/cadmus-refs-iconclass-lookup@0.0.1'
   - marked@18.1.0
+overrides:
+  rollup: "npm:@rollup/wasm-node"
