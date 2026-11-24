@@ -13,4 +13,4 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 🐋 Quick Docker image build:
 
 1. update version in `env.js` and `ng build --configuration=production`
-2. `docker build . -t vedph2020/cadmus-vpi-app:0.0.4 -t vedph2020/cadmus-vpi-app:latest` (replace with the current version).
+2. `docker build . -t vedph2020/cadmus-vpi-app:0.1.1 -t vedph2020/cadmus-vpi-app:latest` (replace with the current version).

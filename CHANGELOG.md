@@ -1,5 +1,8 @@
 # History
 
+## 0.1.1
+
+- 2026-11-24: updated Angular and packages.
 - 2026-11-23:
   - updated Angular and packages.
   - 🆕 opted into history in editor.
